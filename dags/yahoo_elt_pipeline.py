@@ -3,6 +3,9 @@ from airflow.operators.python_operator import PythonOperator
 from datetime import datetime
 import yfinance as yf
 import pandas as pd
+import boto3
+from dotenv import load_dotenv
+import os
 
 
 default_args = {
@@ -49,8 +52,14 @@ def extract_data():
     index_file_name = f"{index_output_directory}/index_data_{end_date}.csv"
     index_data_df.to_csv(index_file_name, index=False)
 
+def load_to_s3():
+    load_dotenv()
+    aws_access_key_id = os.getenv("ACCESS_KEY")
+    aws_secret_access_key = os.getenv("SECRET")
+    s3_bucket_name = 'your_bucket_name'
+    s3_object_key = 'your_object_key'
 
-# Define the DAG
+
 with DAG(
     dag_id='yahoo_finance_elt_pipeline',
     default_args=default_args,
