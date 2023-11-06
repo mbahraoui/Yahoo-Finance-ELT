@@ -1,6 +1,6 @@
 from airflow import DAG
 from airflow.operators.python_operator import PythonOperator
-from datetime import datetime
+from datetime import datetime, timedelta
 import yfinance as yf
 import pandas as pd
 import boto3
@@ -59,8 +59,17 @@ def load_to_s3():
     s3_bucket_name = 'yahoo-finance-data'
     s3 = boto3.client('s3', aws_access_key_id=aws_access_key_id, aws_secret_access_key=aws_secret_access_key)
     first_load_date = '20231106'
-    if '{{ ds_nodash }}' == first_load_date:
+
+    company_object = s3.Object(s3_bucket_name, 'company_info.csv')
+
+    file_exists = company_object.exists()
+    if not (file_exists):
         s3.upload_file('../data/company_info.csv', s3_bucket_name, 'company_info.csv')
+
+    indices_object = s3.Object(s3_bucket_name, 'indices_info.csv')
+
+    file_exists = indices_object.exists()
+    if not (file_exists):
         s3.upload_file('../data/indices_info.csv', s3_bucket_name, 'indices_info.csv')
 
     end_date = datetime.datetime.today().date()
@@ -71,15 +80,23 @@ def load_to_s3():
 
 
 with DAG(
-    dag_id='yahoo_finance_elt_pipeline',
+    dag_id='yahoo_finance_elt_pipeline_v01',
     default_args=default_args,
     description='A DAG for the purpose of extracting data from Yahoo Finance, then storing it in AWS S3, and finally transferring it to AWS Redshift.',
     schedule_interval='@weekly',  
     start_date=datetime(2023, 11, 1),  
     catchup=False,  
 ) as dag:
+
     extract_data_task = PythonOperator(
         task_id='extract_data_task',
         python_callable=extract_data,
     )
+
+    load_to_s3_task = PythonOperator(
+        task_id="load_to_s3_task",
+        python_callable=load_to_s3
+    )
+
+    extract_data_task >> load_to_s3_task
 
