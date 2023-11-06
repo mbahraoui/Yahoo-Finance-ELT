@@ -56,8 +56,18 @@ def load_to_s3():
     load_dotenv()
     aws_access_key_id = os.getenv("ACCESS_KEY")
     aws_secret_access_key = os.getenv("SECRET")
-    s3_bucket_name = 'your_bucket_name'
-    s3_object_key = 'your_object_key'
+    s3_bucket_name = 'yahoo-finance-data'
+    s3 = boto3.client('s3', aws_access_key_id=aws_access_key_id, aws_secret_access_key=aws_secret_access_key)
+    first_load_date = '20231106'
+    if '{{ ds_nodash }}' == first_load_date:
+        s3.upload_file('../data/company_info.csv', s3_bucket_name, 'company_info.csv')
+        s3.upload_file('../data/indices_info.csv', s3_bucket_name, 'indices_info.csv')
+
+    end_date = datetime.datetime.today().date()
+    s3.upload_file(f"../data/stock_data/stock_data_{end_date}.csv", s3_bucket_name, f"stock_data/stock_data_{end_date}.csv")
+    s3.upload_file(f"../data/index_data/index_data_{end_date}.csv", s3_bucket_name, f"index_data/index_data_{end_date}.csv")
+
+
 
 
 with DAG(
