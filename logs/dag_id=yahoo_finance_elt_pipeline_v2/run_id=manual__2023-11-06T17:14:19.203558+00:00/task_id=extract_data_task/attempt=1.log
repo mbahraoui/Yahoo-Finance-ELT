@@ -1,50 +1,0 @@
-[2023-11-06T17:14:35.575+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: yahoo_finance_elt_pipeline_v2.extract_data_task manual__2023-11-06T17:14:19.203558+00:00 [queued]>
-[2023-11-06T17:14:35.635+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: yahoo_finance_elt_pipeline_v2.extract_data_task manual__2023-11-06T17:14:19.203558+00:00 [queued]>
-[2023-11-06T17:14:35.646+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 6
-[2023-11-06T17:14:35.704+0000] {taskinstance.py:1382} INFO - Executing <Task(PythonOperator): extract_data_task> on 2023-11-06 17:14:19.203558+00:00
-[2023-11-06T17:14:35.729+0000] {standard_task_runner.py:57} INFO - Started process 1161 to run task
-[2023-11-06T17:14:35.758+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'yahoo_finance_elt_pipeline_v2', 'extract_data_task', 'manual__2023-11-06T17:14:19.203558+00:00', '--job-id', '7', '--raw', '--subdir', 'DAGS_FOLDER/yahoo_elt_pipeline.py', '--cfg-path', '/tmp/tmpsivlqad1']
-[2023-11-06T17:14:35.777+0000] {standard_task_runner.py:85} INFO - Job 7: Subtask extract_data_task
-[2023-11-06T17:14:36.213+0000] {task_command.py:416} INFO - Running <TaskInstance: yahoo_finance_elt_pipeline_v2.extract_data_task manual__2023-11-06T17:14:19.203558+00:00 [running]> on host a5d58a06784e
-[2023-11-06T17:14:36.799+0000] {taskinstance.py:1662} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='mbahraoui' AIRFLOW_CTX_DAG_ID='yahoo_finance_elt_pipeline_v2' AIRFLOW_CTX_TASK_ID='extract_data_task' AIRFLOW_CTX_EXECUTION_DATE='2023-11-06T17:14:19.203558+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2023-11-06T17:14:19.203558+00:00'
-[2023-11-06T17:14:38.061+0000] {logging_mixin.py:151} INFO - [*********************100%%**********************]  1 of 1 completed
-[2023-11-06T17:14:38.894+0000] {logging_mixin.py:151} INFO - [*********************100%%**********************]  1 of 1 completed
-[2023-11-06T17:14:39.786+0000] {logging_mixin.py:151} INFO - [*********************100%%**********************]  1 of 1 completed
-[2023-11-06T17:14:40.569+0000] {logging_mixin.py:151} INFO - [*********************100%%**********************]  1 of 1 completed
-[2023-11-06T17:14:41.339+0000] {logging_mixin.py:151} INFO - [*********************100%%**********************]  1 of 1 completed
-[2023-11-06T17:14:42.134+0000] {logging_mixin.py:151} INFO - [*********************100%%**********************]  1 of 1 completed
-[2023-11-06T17:14:43.668+0000] {logging_mixin.py:151} INFO - [*********************100%%**********************]  1 of 1 completed
-[2023-11-06T17:14:43.673+0000] {multi.py:178} ERROR - 
-1 Failed download:
-[2023-11-06T17:14:43.687+0000] {multi.py:191} ERROR - ['FB']: Exception('%ticker%: No timezone found, symbol may be delisted')
-[2023-11-06T17:14:44.428+0000] {logging_mixin.py:151} INFO - [*********************100%%**********************]  1 of 1 completed
-[2023-11-06T17:14:45.096+0000] {logging_mixin.py:151} INFO - [*********************100%%**********************]  1 of 1 completed
-[2023-11-06T17:14:45.999+0000] {logging_mixin.py:151} INFO - [*********************100%%**********************]  1 of 1 completed
-[2023-11-06T17:14:47.114+0000] {logging_mixin.py:151} INFO - [*********************100%%**********************]  1 of 1 completed
-[2023-11-06T17:14:48.063+0000] {logging_mixin.py:151} INFO - [*********************100%%**********************]  1 of 1 completed
-[2023-11-06T17:14:49.402+0000] {logging_mixin.py:151} INFO - [*********************100%%**********************]  1 of 1 completed
-[2023-11-06T17:14:50.453+0000] {logging_mixin.py:151} INFO - [*********************100%%**********************]  1 of 1 completed
-[2023-11-06T17:14:50.467+0000] {logging_mixin.py:151} INFO - Current Working Directory: /opt/***
-[2023-11-06T17:14:50.507+0000] {taskinstance.py:1937} ERROR - Task failed with exception
-Traceback (most recent call last):
-  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 192, in execute
-    return_value = self.execute_callable()
-  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 209, in execute_callable
-    return self.python_callable(*self.op_args, **self.op_kwargs)
-  File "/opt/airflow/dags/yahoo_elt_pipeline.py", line 58, in extract_data
-    stock_data_df.to_csv(stock_file_name, index=False)
-  File "/home/airflow/.local/lib/python3.8/site-packages/pandas/core/generic.py", line 3772, in to_csv
-    return DataFrameRenderer(formatter).to_csv(
-  File "/home/airflow/.local/lib/python3.8/site-packages/pandas/io/formats/format.py", line 1186, in to_csv
-    csv_formatter.save()
-  File "/home/airflow/.local/lib/python3.8/site-packages/pandas/io/formats/csvs.py", line 240, in save
-    with get_handle(
-  File "/home/airflow/.local/lib/python3.8/site-packages/pandas/io/common.py", line 737, in get_handle
-    check_parent_directory(str(handle))
-  File "/home/airflow/.local/lib/python3.8/site-packages/pandas/io/common.py", line 600, in check_parent_directory
-    raise OSError(rf"Cannot save file into a non-existent directory: '{parent}'")
-OSError: Cannot save file into a non-existent directory: '../data/stock_data'
-[2023-11-06T17:14:50.631+0000] {taskinstance.py:1400} INFO - Marking task as UP_FOR_RETRY. dag_id=yahoo_finance_elt_pipeline_v2, task_id=extract_data_task, execution_date=20231106T171419, start_date=20231106T171435, end_date=20231106T171450
-[2023-11-06T17:14:50.767+0000] {standard_task_runner.py:104} ERROR - Failed to execute job 7 for task extract_data_task (Cannot save file into a non-existent directory: '../data/stock_data'; 1161)
-[2023-11-06T17:14:50.864+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 1
-[2023-11-06T17:14:51.026+0000] {taskinstance.py:2778} INFO - 0 downstream tasks scheduled from follow-on schedule check
