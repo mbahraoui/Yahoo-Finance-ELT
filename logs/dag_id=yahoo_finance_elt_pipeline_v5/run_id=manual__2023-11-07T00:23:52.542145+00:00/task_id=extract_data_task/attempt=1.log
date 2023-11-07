@@ -1,0 +1,30 @@
+[2023-11-07T00:24:02.545+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: yahoo_finance_elt_pipeline_v5.extract_data_task manual__2023-11-07T00:23:52.542145+00:00 [queued]>
+[2023-11-07T00:24:02.787+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: yahoo_finance_elt_pipeline_v5.extract_data_task manual__2023-11-07T00:23:52.542145+00:00 [queued]>
+[2023-11-07T00:24:02.793+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 6
+[2023-11-07T00:24:02.892+0000] {taskinstance.py:1382} INFO - Executing <Task(PythonOperator): extract_data_task> on 2023-11-07 00:23:52.542145+00:00
+[2023-11-07T00:24:02.941+0000] {standard_task_runner.py:57} INFO - Started process 1154 to run task
+[2023-11-07T00:24:02.962+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'yahoo_finance_elt_pipeline_v5', 'extract_data_task', 'manual__2023-11-07T00:23:52.542145+00:00', '--job-id', '50', '--raw', '--subdir', 'DAGS_FOLDER/yahoo_elt_pipeline.py', '--cfg-path', '/tmp/tmpnw2k0li3']
+[2023-11-07T00:24:02.975+0000] {standard_task_runner.py:85} INFO - Job 50: Subtask extract_data_task
+[2023-11-07T00:24:03.282+0000] {task_command.py:416} INFO - Running <TaskInstance: yahoo_finance_elt_pipeline_v5.extract_data_task manual__2023-11-07T00:23:52.542145+00:00 [running]> on host a5d58a06784e
+[2023-11-07T00:24:03.884+0000] {taskinstance.py:1662} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='mbahraoui' AIRFLOW_CTX_DAG_ID='yahoo_finance_elt_pipeline_v5' AIRFLOW_CTX_TASK_ID='extract_data_task' AIRFLOW_CTX_EXECUTION_DATE='2023-11-07T00:23:52.542145+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2023-11-07T00:23:52.542145+00:00'
+[2023-11-07T00:24:06.588+0000] {logging_mixin.py:151} INFO - [*********************100%%**********************]  1 of 1 completed
+[2023-11-07T00:24:07.928+0000] {logging_mixin.py:151} INFO - [*********************100%%**********************]  1 of 1 completed
+[2023-11-07T00:24:08.818+0000] {logging_mixin.py:151} INFO - [*********************100%%**********************]  1 of 1 completed
+[2023-11-07T00:24:10.301+0000] {logging_mixin.py:151} INFO - [*********************100%%**********************]  1 of 1 completed
+[2023-11-07T00:24:11.844+0000] {logging_mixin.py:151} INFO - [*********************100%%**********************]  1 of 1 completed
+[2023-11-07T00:24:13.940+0000] {logging_mixin.py:151} INFO - [*********************100%%**********************]  1 of 1 completed
+[2023-11-07T00:24:15.847+0000] {logging_mixin.py:151} INFO - [*********************100%%**********************]  1 of 1 completed
+[2023-11-07T00:24:15.901+0000] {multi.py:178} ERROR - 
+1 Failed download:
+[2023-11-07T00:24:15.968+0000] {multi.py:191} ERROR - ['FB']: Exception('%ticker%: No timezone found, symbol may be delisted')
+[2023-11-07T00:24:20.919+0000] {logging_mixin.py:151} INFO - [*********************100%%**********************]  1 of 1 completed
+[2023-11-07T00:24:22.514+0000] {logging_mixin.py:151} INFO - [*********************100%%**********************]  1 of 1 completed
+[2023-11-07T00:24:25.303+0000] {logging_mixin.py:151} INFO - [*********************100%%**********************]  1 of 1 completed
+[2023-11-07T00:24:27.758+0000] {logging_mixin.py:151} INFO - [*********************100%%**********************]  1 of 1 completed
+[2023-11-07T00:24:28.790+0000] {logging_mixin.py:151} INFO - [*********************100%%**********************]  1 of 1 completed
+[2023-11-07T00:24:31.433+0000] {logging_mixin.py:151} INFO - [*********************100%%**********************]  1 of 1 completed
+[2023-11-07T00:24:32.679+0000] {logging_mixin.py:151} INFO - [*********************100%%**********************]  1 of 1 completed
+[2023-11-07T00:24:32.766+0000] {python.py:194} INFO - Done. Returned value was: None
+[2023-11-07T00:24:32.840+0000] {taskinstance.py:1400} INFO - Marking task as SUCCESS. dag_id=yahoo_finance_elt_pipeline_v5, task_id=extract_data_task, execution_date=20231107T002352, start_date=20231107T002402, end_date=20231107T002432
+[2023-11-07T00:24:32.987+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 0
+[2023-11-07T00:24:33.242+0000] {taskinstance.py:2778} INFO - 1 downstream tasks scheduled from follow-on schedule check
