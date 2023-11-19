@@ -28,4 +28,4 @@ The project is organized into the following main components:
 
 ## Entity-Relationship Diagram
 
-![ER Diagram]([https://raw.githubusercontent.com/yourusername/yourrepository/main/path/to/your/image.png](https://raw.githubusercontent.com/mbahraoui/Yahoo-Finance-ELT/main/entity%20relationship%20diagram.png)https://raw.githubusercontent.com/mbahraoui/Yahoo-Finance-ELT/main/entity%20relationship%20diagram.png)
+![ER Diagram](https://raw.githubusercontent.com/mbahraoui/Yahoo-Finance-ELT/main/entity%20relationship%20diagram.png)
