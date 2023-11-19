@@ -148,10 +148,10 @@ def transfer_data_to_redshift():
     """
     redshift_cursor.execute(index_data_staging)
 
-
+    end_date = datetime.today().date()
     staging_table_names = ['company_info_staging', 'stock_data_staging', 'indices_info_staging', 'index_data_staging']
     s3_bucket_name = 'yahoo-finance-data'
-    s3_keys= ['company_info.csv', 'stock_data/stock_data_2023-11-07.csv', 'indices_info.csv', 'index_data/index_data_2023-11-07.csv']
+    s3_keys= ['company_info.csv', f"stock_data/stock_data/stock_data_{end_date}.csv", 'indices_info.csv', f"index_data/index_data_{end_date}.csv"]
 
     for staging_table_name, s3_key in zip(staging_table_names, s3_keys):
         load_staging_data_sql = f"""
